@@ -6,6 +6,7 @@ on:
     branches: [ "main" ]
     paths:
       - "Automate-Code-Deployment-Using-CI/**"
+workflow_dispatch:
 
 jobs:
   build-and-deploy:
