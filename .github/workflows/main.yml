@@ -15,7 +15,7 @@ jobs:
     # Default working directory for all steps
     defaults:
       run:
-        working-directory: Task-1-CICD-Pipeline
+        working-directory: Automate-Code-Deployment-Using-CI
 
     steps:
       - name: 🧩 Checkout Repository
@@ -27,9 +27,7 @@ jobs:
           node-version: 18
 
       - name: 📦 Install Dependencies
-        run: |
-          cd Automate-Code-Deployment-Using-CI
-          npm install
+        run: npm install
 
       - name: 🧪 Run Tests
         run: npm test --if-present
