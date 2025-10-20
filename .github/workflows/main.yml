@@ -1,0 +1,44 @@
+name: Task 1 - CI/CD Pipeline
+
+# Run this workflow whenever code in Task-1-CICD-Pipeline changes
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "Task-1-CICD-Pipeline/**"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    # Default working directory for all steps
+    defaults:
+      run:
+        working-directory: Task-1-CICD-Pipeline
+
+    steps:
+      - name: 🧩 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: 🧪 Run Tests
+        run: npm test --if-present
+
+      - name: 🐳 Log in to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: 🏗️ Build Docker Image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/task1-node-app:latest .
+
+      - name: 🚀 Push Docker Image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/task1-node-app:latest
