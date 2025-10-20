@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "Automate-Code-Deployment-CI/**"
+      - "Automate-Code-Deployment-Using-CI/**"
 
 jobs:
   build-and-deploy:
