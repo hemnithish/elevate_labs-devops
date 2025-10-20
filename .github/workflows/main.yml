@@ -5,7 +5,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "Task-1-CICD-Pipeline/**"
+      - "Automate-Code-Deployment-CI/**"
 
 jobs:
   build-and-deploy:
